@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>قعدة جبنه 😎</title>
+    <style>
+      body {
+        font-family: "Noto Sans Arabic", sans-serif;
+        background: #f9f5f0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .card {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 90%;
+        text-align: center;
+      }
+      h1 {
+        margin: 0 0 10px;
+      }
+      p {
+        color: #555;
+      }
+      button {
+        background: #222;
+        color: white;
+        border: 0;
+        padding: 10px 16px;
+        margin: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+      .typed {
+        min-height: 60px;
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>يا تانو 😄</h1>
+      <p>
+        "بس دايرك لمن تزعلي ولا تفرحي، تتذكريني كده ساي… الزول دا كان بيونسني
+        ساي 😂 😌 يمكن تضحكي ساي وتقولِي: الزول دا لسه ما اتغير 😂"
+      </p>
+      <button id="openBtn">اضغط ووريك سر خفيف</button>
+      <button id="coffeeBtn" style="background: #6b4fcb">
+        أجهز ليك جبنة ☕
+      </button>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <div class="typed" id="typed"></div>
+        <button id="closeBtn">تمام</button>
+      </div>
+    </div>
+
+    <script>
+      const openBtn = document.getElementById("openBtn");
+      const coffeeBtn = document.getElementById("coffeeBtn");
+      const overlay = document.getElementById("overlay");
+      const typed = document.getElementById("typed");
+      const closeBtn = document.getElementById("closeBtn");
+
+      function showModal(text) {
+        overlay.style.display = "flex";
+        typed.textContent = "";
+        typeWriter(text, 0);
+      }
+
+      closeBtn.onclick = () => (overlay.style.display = "none");
+      overlay.onclick = (e) => {
+        if (e.target === overlay) overlay.style.display = "none";
+      };
+
+      openBtn.onclick = () =>
+        showModal(
+          "السر البسيط: الشغل دا ظاهر بسيط، لكن تعبنا فيهو عديل 😅\n\nيعني لو طلع تمام، عاوزين تصفيقة جماعية 😂"
+        );
+      coffeeBtn.onclick = () =>
+        showModal(
+          "الجبنة جاهزة 😎☕\nبس ما مسؤول لو جاتك الحالة بتاعة الكلام الكتير بعد أول رشفة 😂"
+        );
+
+      function typeWriter(text, i) {
+        if (i < text.length) {
+          typed.textContent += text.charAt(i);
+          setTimeout(() => typeWriter(text, i + 1), 35);
+        }
+      }
+    </script>
+  </body>
+</html>
